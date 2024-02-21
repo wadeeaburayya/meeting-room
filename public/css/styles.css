@@ -1,0 +1,1685 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --main-color: #9a59d6;
+  --color-dark: #421a75;
+  --text-gray: #ab7ac2;
+  --white: #fff;
+
+  --sidebar-color: #252631;
+  --sidebar-active: #7d35cf;
+  --sidebar-active-hover: #50505a;
+
+  --border-color: #ccc;
+
+  --main-background: #f1f5f9;
+
+  /* Variables */
+
+  --sidebar-width: 240px;
+  --sidebar-width-check: 100px;
+
+  --box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: var(--sidebar-color);
+  z-index: 100;
+  white-space:nowrap;
+  transition: width 300ms;
+}
+
+.sidebar-brand {
+  color: var(--white);
+  /* height: 90px; */
+  padding: 1rem 0rem 1rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-brand span:first-child {
+  padding-left: 1rem;
+}
+
+/* Toggle Checkbox CSS */
+/* .sidebar .sidebar-brand h2 span:last-child {
+  transition: display 300ms ease;
+}
+.sidebar li a span:last-child {
+  transition: display 300ms ease; 
+} */
+
+/******************* END  *****************/
+
+.sidebar-brand span {
+  display: inline-block;
+  padding-right: 1rem;
+}
+
+.sidebar-menu {
+  margin-top: 1rem;
+}
+
+.sidebar-menu li {
+  width: 100%;
+  margin-bottom: 0.4rem;
+  padding-left: 2rem;
+  padding-right: 1rem;
+}
+
+.sidebar-menu a {
+  display: block;
+  font-size: 0.9rem;
+  padding: 0.7rem 0;
+  border-radius: 5px;
+  color: var(--white);
+  transition: background-color 300ms ease;
+}
+
+.sidebar-menu a:hover {
+  background: var(--sidebar-active-hover);
+}
+
+.sidebar-menu a.active {
+  background: var(--sidebar-active);
+  color: var(--white);
+}
+
+.sidebar-menu a span:first-child {
+  font-size: 1rem;
+  padding: 0rem 1rem;
+}
+
+/* Sidebar End Here */
+
+/* Main Content */
+.main-content {
+
+  margin-left: var(--sidebar-width);
+  transition: margin-left 300ms;
+  
+}
+
+/* Header */
+
+header {
+  background: var(--white);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  box-shadow: var(--box-shadow);
+  position: fixed;
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  top: 0;
+  z-index: 100;
+  transition: left 300ms;
+}
+
+header h2 {
+  color: #222;
+}
+header h2 label {
+  cursor: pointer;
+}
+header h2 i {
+  font-size: 1.5rem;
+  padding-right: 1rem;
+}
+
+.search-wrapper {
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.search-wrapper i {
+  display: inline-block;
+  padding: 0rem 1rem;
+  font-size: 1.5rem;
+}
+
+.search-wrapper input {
+  height: 100%;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+}
+
+.user-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.user-wrapper img {
+  width: 50px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.user-wrapper small {
+  display: inline-block;
+  color: var(--text-gray);
+}
+
+/* Dosya yükleme düğmesi stilleri */
+.custom-file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #c0c0c0, #e0e0e0); /* Gümüş metalik geçişli arka plan */
+  color: #444; /* Metin rengi */
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Fare üzerine gelme efekti */
+.custom-file-label:hover {
+  background: linear-gradient(135deg, #a9a9a9, #c0c0c0); /* Fare üzerine gelindiğinde daha koyu bir gümüş tonu */
+}
+
+/* Fare tıklandığında efekt */
+.custom-file-label:active {
+  background: linear-gradient(135deg, #808080, #a9a9a9); /* Tıklama sırasında daha koyu bir ton */
+}
+
+/* Dosya yükleme inputu gizleme */
+.file-input {
+  display: none;
+}
+
+
+/********************* Header End Here ***********************/
+
+/* Main Content - Inner */
+main {
+  margin-top: 60px;
+  padding: 2rem 0.2rem;
+  background: var(--main-background);
+  min-height: calc(100vh - 60px);
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 150px;
+  margin-left:15px;
+}
+
+.card-single {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.card-single span {
+  font-size: 1rem;
+  color: var(--text-gray);
+}
+
+.card-single i {
+  color: var(--main-color);
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+      width: 100%;
+      display: block;
+  }
+  .main-content {
+      width: 100%;
+      display: block;
+  }
+  .header-title h2, .search-wrapper, .user-wrapper {
+      text-align: center;
+  }
+  .cards {
+      flex-direction: column;
+      
+  }
+}
+
+
+/* Cards End Here */
+
+/* Main Content - Inner End */
+
+/* Main Content End Here */
+
+/**************************** Toggling Using Checkbox *************************************/
+#nav-toggle {
+  display: none;
+}
+
+#nav-toggle:checked + .sidebar {
+  width: var(--sidebar-width-check);
+}
+
+#nav-toggle:checked + .sidebar .sidebar-brand,
+#nav-toggle:checked + .sidebar li {
+  padding-left: 1rem;
+  text-align: center;
+}
+#nav-toggle:checked + .sidebar .sidebar-brand {
+  padding-left: 8px;
+}
+
+#nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
+#nav-toggle:checked + .sidebar li a span:last-child {
+  display: none;
+}
+
+#nav-toggle:checked ~ .main-content {
+  margin-left: var(--sidebar-width-check);
+}
+
+#nav-toggle:checked ~ .main-content header {
+  left: var(--sidebar-width-check);
+  width: calc(100% - var(--sidebar-width-check));
+}
+
+/***************** Toggling Using Checkbox - End Here  **************************/
+
+/* Media Queries */
+
+/* Meaning Screen width upto 1200px or less */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: var(--sidebar-width-check);
+  }
+
+  .sidebar .sidebar-brand,
+  .sidebar li {
+    padding-left: 1rem;
+    text-align: center;
+  }
+  .sidebar .sidebar-brand {
+    padding-left: 8px;
+  }
+
+  .sidebar .sidebar-brand h2 span:last-child,
+  .sidebar li a span:last-child {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: var(--sidebar-width-check);
+  }
+
+  .main-content header {
+    left: var(--sidebar-width-check);
+    width: calc(100% - var(--sidebar-width-check));
+  }
+
+  /* .sidebar:hover {
+    width: var(--sidebar-width);
+    z-index: 200;
+  }
+
+  .sidebar:hover .sidebar-brand,
+  .sidebar:hover li {
+    padding-left: 2rem;
+    text-align: left;
+  }
+
+  .sidebar:hover .sidebar-brand h2 span:last-child,
+  .sidebar:hover li a span:last-child {
+    display: inline;
+  } */
+}
+
+@media (max-width: 960px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .search-wrapper {
+    display: none;
+  }
+
+  .sidebar {
+    left: -100% !important;
+  }
+
+  header h2 {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+  }
+  header h2 label {
+    display: inline-block;
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    background: var(--sidebar-color);
+    padding-left: 2px;
+    padding-right: 0rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+  }
+  header h2 i {
+    text-align: center;
+    padding: 0;
+    padding-left: 7px;
+  }
+
+  .main-content {
+    
+    margin-left: 0rem;
+    
+  }
+  header {
+    width: 100% !important;
+    left: 0 !important;
+  }
+
+  #nav-toggle:checked + .sidebar {
+    left: 0 !important;
+    z-index: 100;
+    width: var(--sidebar-width);
+  }
+
+  #nav-toggle:checked + .sidebar .sidebar-brand,
+  #nav-toggle:checked + .sidebar li a {
+    padding-left: 1rem;
+    text-align: left;
+  }
+
+  #nav-toggle:checked + .sidebar li a {
+    padding-left: 1rem;
+  }
+
+  #nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
+  #nav-toggle:checked + .sidebar li a span:last-child {
+    display: inline;
+  }
+
+  #nav-toggle:checked ~ .main-content {
+    margin-left: 0rem !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .cards {
+    margin-top: 150px;
+    grid-template-columns: 1fr;
+  }
+}
+.grids {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto; /* Yatay kaydırma çubuğunu etkinleştir */
+  
+}
+
+.grids-head, .grids-row {
+  min-width: min-content; /* İçerik genişliğine bağlı minimum genişlik */
+  display: flex;
+}
+
+.hours, .timeslot, .day{
+  width: 130px; /* Sabit genişlik */
+  height: 60px; /* Sabit yükseklik */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d5d1defe; /* Arka plan rengi */
+  border: 1px solid #ddd; /* Çerçeve */
+  margin: 2px; /* Sağ ve sol boşluk */
+  text-align: center;
+  cursor: pointer; /* İmleç stilini pointer olarak ayarla */
+  transition: background-color 0.3s ease; /* Arka plan rengi değişim animasyonu */
+}
+
+.hours:hover, .timeslot:hover, .day:hover {
+  background-color: #dca3df; /* Hover durumunda arka plan rengi */
+}
+
+form {
+  font-family: Arial, sans-serif;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* İpucu stilini özelleştirme */
+input[type="date"]::placeholder {
+  color: #999;
+}
+
+/* Gönder düğmesi */
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #6f34a0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #753bac;
+}
+body{
+  color: #2c2b2b;
+  background-color: #f4f6f9;
+}
+.avatar-xl img {
+  width: 110px;
+}
+.rounded-circle {
+  border-radius: 50% !important;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+.text-muted {
+  color: #aeb0b4 !important;
+}
+.text-muted {
+  font-weight: 300;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #4d5154;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid #eef0f3;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.container {
+  display: flex;
+  margin-right: -10px; /* Son elemanın sağ marjını sıfırlamak için */
+}
+
+.schedular-body {
+  margin-right: 20px; /* İstediğiniz boşluk */
+}
+
+.meeting-info {
+  margin-top: 30px;
+  width: 400px;
+  background: #f5f6fa;
+  overflow: hidden;
+  padding: 0 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.meeting-info h3 {
+  background: #edeef2;
+  font-size: 16px;
+  color: #6f7480;
+  font-weight: 400;
+  text-align: center;
+  padding: 13px 10px;
+  margin: 0 -20px 10px;
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+
+.meeting {
+  margin: 0 0 10px;
+  background: #FFF;
+  width: 100%;
+  padding: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 13px rgba(0, 0, 0, 0.06);
+  -moz-box-shadow: 0 0 13px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0 13px rgba(0, 0, 0, 0.06);
+}
+
+.meeting-top {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.meeting-top span {
+  font-size: 12px;
+  background: #8243b6;
+  padding: 3px 5px;
+  color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.meeting i {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 12px;
+  color: #6f7480;
+}
+
+.meeting-bottom {
+  display: flex;
+  align-items: center;
+  margin-top: 7px;
+}
+
+.meeting-bottom h5 {
+  font-size: 16px;
+  color: #282828;
+  margin: 0;
+}
+
+.meetings-container {
+  display: flex;
+  flex-wrap: wrap; /* Ekran genişliği kısıtlı olduğunda öğeleri yeni satıra taşır */
+}
+
+.meeting-info.upcoming-meetings, .meeting-info.ongoing-meetings {
+  flex: 1; /* Her iki bölüm de esnek genişlikte olacak ve mevcut alanı eşit olarak paylaşacak */
+  min-width: 50%; /* Ekran genişliği yeterince büyükse, her bölüm konteynerin yarısını kaplar */
+}
+
+@media (max-width: 768px) {
+  .meeting-info.upcoming-meetings, .meeting-info.ongoing-meetings {
+    min-width: 100%; /* Mobil cihazlarda, bölümler ekranın tam genişliğini kullanarak alt alta dizilir */
+  }
+}
+
+
+.main-scheduler {
+  background: #f5f6fa;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow-x: auto; /* Yatay kaydırmayı etkinleştir */
+  overflow-y: hidden; /* Dikey kaydırmayı engelle */
+  white-space: nowrap; /* İçerikleri yan yana sıralamak için */
+  display: flex; /* İçerikleri flex container içinde yatay olarak sırala */
+  flex-wrap: nowrap; /* İçeriklerin yan yana sıralanmasını sağla ve kaydırma çubuğunu etkinleştir */
+}
+
+
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Elemanlar arası boşluk */
+}
+
+select, input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+select:hover, input[type="date"]:hover,
+select:focus, input[type="date"]:focus {
+  border-color: #7c38bd; /* Hover ve focus durumunda sınır rengi */
+}
+
+
+/* Form elemanları yan yana duruyorsa bu tarzı kullan */
+form {
+  margin-left: 20px; /* Select kutusu ile form arasında boşluk */
+}
+
+@media (max-width: 768px) {
+  .d-flex {
+    flex-direction: column; /* Küçük ekranlarda elemanları dikey hizala */
+    gap: 10px; /* Dikeydeki boşluk */
+  }
+
+  form {
+    margin-left: 0; /* Küçük ekranlarda formun sol boşluğunu kaldır */
+  }
+}
+
+/* Genel Stiller */
+.wrapper {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.right {
+
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  padding: 25px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .right {
+    width: 90%; /* Mobil cihazlarda genişliği azalt */
+    padding: 15px; /* Mobil cihazlarda padding'i azalt */
+    max-width: none; /* Max-width kısıtlamasını kaldır */
+  }
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: block;
+}
+
+h2, h3 {
+  color: #333;
+  margin: 20px 0 10px;
+}
+
+.form {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.field label {
+  display: block;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .bottom a {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .bottom a:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+/* Responsive Stiller */
+@media only screen and (max-width: 768px) {
+  .right {
+    padding: 20px;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .button_left, .button_right {
+    width: calc(50% - 5px);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .bottom {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button_left, .button_right {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+/*@page {
+  size: landscape;
+  margin: 0; 
+}*/
+
+main.table {
+  
+  height: 90vh;
+  background-color: #fff5;
+  box-shadow: 0 .4rem .8rem #0005;
+  border-radius: .8rem;
+
+  overflow: hidden;
+}
+
+.table__header {
+  width: 100%;
+  height: 10%;
+  background-color: #fff4;
+  padding: .8rem 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table__header .input-group {
+  width: 35%;
+  height: 100%;
+  background-color: #fff5;
+  padding: 0 .8rem;
+  border-radius: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: .2s;
+}
+
+.table__header .input-group:hover {
+  width: 45%;
+  background-color: #fff8;
+  box-shadow: 0 .1rem .4rem #0002;
+}
+
+.table__header .input-group img {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.table__header .input-group input {
+  width: 100%;
+  padding: 0 .5rem 0 .3rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.table__body {
+  width: 95%;
+  max-height: calc(89% - 1.6rem);
+  background-color: #fffb;
+
+  margin: .8rem auto;
+  border-radius: .6rem;
+
+  overflow: auto;
+  overflow: overlay;
+}
+
+
+.table__body::-webkit-scrollbar{
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb{
+  border-radius: .5rem;
+  background-color: #0004;
+  visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb{ 
+  visibility: visible;
+}
+
+
+table {
+  width: 100%;
+}
+
+td img {
+  width: 36px;
+  height: 36px;
+  margin-right: .5rem;
+  border-radius: 50%;
+
+  vertical-align: middle;
+}
+
+table, th, td {
+  border-collapse: collapse;
+  padding: .7rem;
+  text-align: left;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #d5d1defe;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #0000000b;
+}
+
+tbody tr {
+  --delay: .1s;
+  transition: .5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+tbody tr:hover {
+  background-color: #fff6 !important;
+}
+
+tbody tr td,
+tbody tr td p,
+tbody tr td img {
+  transition: .2s ease-in-out;
+}
+
+tbody tr.hide td,
+tbody tr.hide td p {
+  padding: 0;
+  font: 0 / 0 sans-serif;
+  transition: .2s ease-in-out .5s;
+}
+
+tbody tr.hide td img {
+  width: 0;
+  height: 0;
+  transition: .2s ease-in-out .5s;
+}
+
+.status {
+  width: 6rem;
+  padding: .1rem 0;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.status.active {
+color: #86e49d;
+  
+}
+
+.status.deactive {
+color: #d893a3;
+
+}
+
+@media (max-width: 768px) {
+  .table__body {
+    /* Ekran genişliğine göre yatay kaydırma sağlar */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    width: 100%;
+  }
+
+  table {
+    /* Tablonun minimum genişliğini ekran genişliğine göre ayarla */
+    min-width: 768px; /* Örnek bir değer, ihtiyacınıza göre ayarlayabilirsiniz */
+  }
+
+  thead th, tbody td {
+    /* Mobil görünümde sütunların daralmamasını sağlar */
+    white-space: nowrap;
+  }
+
+  /* Tablonun içeriğini yatay kaydırılabilir yapar */
+  .table {
+    overflow-x: auto;
+  }
+}
+
+
+thead th span.icon-arrow {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  border: 1.4px solid transparent;
+  
+  text-align: center;
+  font-size: 1rem;
+  
+  margin-left: .5rem;
+  transition: .2s ease-in-out;
+}
+
+thead th:hover span.icon-arrow{
+  border: 1.4px solid #6c00bd;
+}
+
+thead th:hover {
+  color: #6c00bd;
+}
+
+thead th.active span.icon-arrow{
+  background-color: #6c00bd;
+  color: #fff;
+}
+
+thead th.asc span.icon-arrow{
+  transform: rotate(180deg);
+}
+
+thead th.active,tbody td.active {
+  color: #6c00bd;
+}
+
+
+/* 
+.dropdown {
+  display: inline-block;
+}
+
+/* Buton Stili 
+.dropdown-btn {
+  
+    cursor: pointer;
+      border-radius: 5em;
+      color: #fff;
+      background: linear-gradient(to right, #651574, #cf8add);
+      border: 0;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
+      
+      font-size: 13px;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  
+}
+
+/* Açılır Menü İçeriği 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Açılır Menü Linkleri 
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Açılır Menü Linkleri - Hover 
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Buton Hover 
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Buton Hover Renk 
+.dropdown-btn:hover {
+  background-color: #773e8e;
+}  */
+
+body {
+  background-color: #F5F6FA;
+  font-family: 'sans-serif', poppins;
+}
+
+.main {
+  background-color: #FFFFFF;
+  width: 400px;
+  height: 400px;
+  margin: 7em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.sign {
+  padding-top: 40px;
+  color: #8C55AA;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+.un {
+width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+form.form1 {
+  padding-top: 40px;
+}
+
+.pass {
+      width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+
+.un:focus, .pass:focus {
+  border: 2px solid rgba(0, 0, 0, 0.18) !important;
+  
+}
+
+.submit {
+cursor: pointer;
+  border-radius: 5em;
+  color: #fff;
+  background: linear-gradient(to right, #9C27B0, #E040FB);
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-left: 35%;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.forgot {
+  text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+  color: #E1BEE7;
+  padding-top: 15px;
+}
+
+a {
+  text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+  color: #000000;
+  text-decoration: none
+}
+
+@media (max-width: 600px) {
+  .main {
+      border-radius: 0px;
+  }
+  
+}
+  /* Modal Genel Stilleri */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  padding:30px;
+}
+
+/* Modal İçeriği */
+.modal-dialog {
+  position: fixed; /* Modalı sabit bir konumda tut */
+  top: 50%; /* Üstten itibaren ekranın yarısına yerleştir */
+  left: 50%; /* Soldan itibaren ekranın yarısına yerleştir */
+  transform: translate(-50%, -50%); /* Tam ortada konumlandırmak için geri çevir */
+  width: auto; /* Modalın genişliğini içeriğine göre ayarla */
+  max-width: 600px; /* İsteğe bağlı olarak maksimum genişlik belirle */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: auto;
+  max-width: 500px;
+}
+
+/* Modal Başlık */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.close-modal {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #6c757d;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Form Stilleri */
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 0.875rem;
+}
+
+/* Buton Stilleri */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+}
+
+.btn-primary, .btn-secondary{
+  cursor: pointer;
+  border-radius: 5em;
+  color: #fff;
+  padding: 10px 40px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  display: inline-block; /* Butonları yan yana getir */
+  margin: 0 40px; /* Butonlar arasında boşluk */
+}
+.btn-single {
+  cursor: pointer;
+  border-radius: 5em;
+  color: #fff;
+  padding: 10px 40px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  margin: 0 17px;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #651574, #cf8add);
+  border: 0;
+}
+
+.btn-secondary {
+  background: linear-gradient(to right, #3b373b, #e6dee7);
+  border: 0;
+}
+.btn-single {
+  background: linear-gradient(to right,#651574, #cf8add);
+  border: 0;
+}
+
+.btn-primary:hover, .btn-secondary:hover, .btn-single:hover {
+  opacity: 0.9;
+  transform: scale(1.05); /* Butona hover yapıldığında büyüt */
+}
+
+/* Modal Animasyonu */
+.modal-content {
+  animation: modalFadeIn 0.5s;
+}
+
+@keyframes modalFadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+/* Modal Temel Stilleri */
+.modal {
+  display: none; /* Varsayılan olarak modalı gizle */
+  position: fixed; /* Sabit konum */
+  z-index: 1000; /* Diğer içeriklerin üzerinde */
+  left: 0;
+  top: 0;
+  width: 100%; /* Tam ekran genişliği */
+  height: 100%; /* Tam ekran yüksekliği */
+  overflow: auto; /* İçerik fazlaysa kaydırma çubuğu */
+  background-color: rgba(0,0,0,0.4); /* Yarı saydam arka plan */
+}
+
+/* Modal İçeriği */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* Sayfanın ortasında */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%; /* Çoğu ekran için uygun genişlik */
+  max-width: 600px; /* Maksimum genişlik */
+}
+
+/* Kapat Butonu */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Form Stilleri */
+#newUserForm label {
+  display: block;
+  margin-top: 10px;
+}
+
+#newUserForm input[type="text"],
+#newUserForm input[type="email"],
+#newUserForm input[type="password"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Buton Stilleri */
+#newUserForm button {
+  display: inline-block;
+  background-color: #904caf;
+  color: white;
+  padding: 10px 20px;
+  margin: 20px 0px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#newUserForm button:hover {
+  background-color: #7b45a0;
+}
+
+/* Butonların Yan Yana Düzeni */
+.bottom {
+  text-align: center;
+}
+
+.bottom button {
+  margin: 0 10px; /* Butonlar arası boşluk */
+}
+.passenger-info.complete-add {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    display: none;
+    height: 100%;
+    z-index:1;
+    background: inherit;
+    font-weight: 500;
+    min-width: 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.passenger-info.complete-add ul li {
+    margin: 0;
+    max-width: none;
+    text-overflow: unset;
+    overflow: visible;
+    white-space: unset;
+}
+.ride-menu{
+    position:absolute;
+    left:0;
+    top:0;
+    visibility:hidden;
+    opacity:0;
+    z-index:11;
+    background: #FFF;
+    width: 234px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.ride-menu.show{
+    opacity:1;
+    visibility:visible;
+}
+.menu-title {
+    background: linear-gradient(to right, #6ec0fe,#1386de);
+    padding:8px 15px;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+.menu-title h4 {
+    color: #FFF;
+    margin: 0 0 2px;
+    font-family: barlow;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.menu-title p {
+    margin: 0;
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    display:none;
+}
+.ride-menu ul {
+    list-style: none;
+    padding:10px 0 0;
+    font-size: 14px;
+    color: #9ea4b0;
+}
+.ride-menu ul li {
+    font-size: 14px;
+}
+.ride-menu ul li a {
+    padding:5px 20px;
+    width: 100%;
+    display: inline-block;
+}
+.ride-menu ul li i {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+.ride-menu ul li.bordered{border-top: 1px solid #e2e8f1}
+.ride-menu ul li a:hover{background: #e2e8f1}
+.ride-options ul{padding: 10px 0}
+.other-info {
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+}
+.other-info i {
+    display: block;
+    font-size: 21px;
+    line-height: 1;
+}
+.other-info span {
+    font-size: 14px;
+    line-height: 1.3;
+    margin: 5px 0 0;
+    display: block;
+}
+.hidden{display:none}
+.short-ride-info {
+    position: absolute;
+    margin-top: 0px;
+    left:0;
+    color: currentColor;
+    top: 100%;
+    width: auto;
+    display: flex;
+    background: #FFF;
+    padding: 10px 20px;
+    white-space: nowrap;
+    opacity:0;
+    z-index:1;
+    visibility:hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    -webkit-transition:all 0.3s linear;
+    -moz-transition:all 0.3s linear;
+    transition:all 0.3s linear;
+}
+.short-ride:hover .short-ride-info{
+    opacity:1;
+    visibility:visible;
+}
+.short-ride-info ul {
+    list-style: none;
+    font-size: 13px;
+    max-width:270px;
+    white-space:normal;
+    width:max-content;
+}
+.short-ride-info:before {
+    content: "";
+    position: absolute;
+    left:20px;
+    width: 10px;
+    height: 10px;
+    top: -5px;
+    background: inherit;
+    margin-left: -5px;
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+.short-ride-info ul li strong {
+    font-weight: 500;
+    font-size: 14px;
+}
+.droppable{
+    width:calc(100% - 20%);
+    height:calc(100% - 20%);
+    position:absolute;
+    left:10%;
+    top:10%;
+    z-index:2;
+}
+.custom-label {
+  width: 130px; /* Genişlik */
+  height: 60px; /* Yükseklik */
+  background-color: #b57ec0; /* Arka plan rengi */
+/* Yuvarlak köşeler */
+  color: white; /* Yazı rengi */
+  display: flex; /* Flexbox kullanarak içeriği ortala */
+  flex-direction: column; /* İçerikleri dikey olarak sırala */
+  justify-content: center; /* Dikeyde içeriği ortala */
+  align-items: center; /* Yatayda içeriği ortala */
+  font-size: 16px; /* Yazı boyutu */
+  font-family: Arial, sans-serif; /* Yazı tipi */
+  padding: 5px; /* İç boşluk */
+}
+
+.label-row {
+  margin: 2px 0; /* Satırlar arası biraz boşluk */
+}
+/* Options dropdown container */
+.options-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Options button style */
+.options-btn {
+  background-color: #f8f9fa; /* Arkaplan rengi */
+  color: #333; /* Metin rengi */
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Options content (seçeneklerin göründüğü bölüm) */
+.options-content {
+  display: none;
+  position: absolute;
+  background-color: #fff; /* Seçeneklerin arka plan rengi */
+  min-width: 120px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Gölge efekti */
+  z-index: 1;
+  border-radius: 5px;
+  top: 100%; /* Butonun altına yerleştir */
+  left: 0;
+}
+
+/* Seçeneklerin linkleri */
+.options-content a {
+  color: #333; /* Metin rengi */
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+}
+
+/* Seçeneklerin linklerinin hover efekti */
+.options-content a:hover {
+  background-color: #f8f9fa; /* Hover rengi */
+}
+
+/* Options dropdown'un üzerine gelindiğinde seçeneklerin görünmesi */
+.options-dropdown:hover .options-content {
+  display: block;
+}
+/* Dropdown Container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Buton Stili */
+.dropdown-toggle {
+  background: linear-gradient(to right, #651574, #cf8add); /* Arka plan rengi */
+  color: #fff; /* Metin rengi */
+  border: none; /* Kenarlık olmadan */
+  padding: 10px 20px; /* Dört yönlü dolgu */
+  cursor: pointer;
+  border-radius: 5px; /* Yuvarlatılmış kenarlar */
+  transition: background-color 0.3s; /* Geçiş efekti */
+}
+
+/* Dropdown Menü Stili */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Butondan aşağıda konumlandırma */
+  left: 0;
+  background-color: #fff;
+  min-width: 160px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  z-index: 1;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Hafif gölgelendirme */
+}
+
+/* Dropdown Menü Öğeleri */
+.dropdown-menu li {
+  padding: 10px 20px; /* Dört yönlü dolgu */
+  transition: background-color 0.3s; /* Geçiş efekti */
+}
+
+/* Dropdown Menü Öğeleri Hover */
+.dropdown-menu li:hover {
+  background-color: #f8f9fa; /* Hover rengi */
+}
+
+/* Dropdown Üzerine Gelindiğinde Menüyü Göster */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown Üzerine Gelindiğinde Buton Rengi */
+.dropdown:hover .dropdown-toggle {
+  background-color: #5a6268; /* Hover rengi */
+}
