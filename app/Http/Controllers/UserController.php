@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -9,9 +10,22 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        $usersCount = User::count();
-        $userAdmin = User::where('user_role', 1)->count();
-
-        return view('dashboard', compact('users', 'usersCount', 'userAdmin'));
+        return view('members', compact('users'));
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+            'user_role' => 'required'
+        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->user_role = $request->user_role;
+        $user->save();
+        return redirect()->back()->with('success', 'User created successfully');
     }
 }
