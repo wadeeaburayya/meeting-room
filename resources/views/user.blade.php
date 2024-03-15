@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @include('layouts.header')
-    <title>Dashboard</title>
+    <title>Profile Settings</title>
 </head>
+
 <body>
     @include('layouts.sidebar')
     <!-- Main Content -->
@@ -24,30 +26,63 @@
                     </div>
                 </div>
                 <div class="form">
-                    <form action="index.html" method="post">
+                    <form action="{{ route('user.update', $user->id) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <div class="field">
-                            <label for="">Full Name</label>
-                            <input class="full_name" type="text" name="full-name" value="" />
+                            <label for="full_name">Full Name</label>
+                            <input id="full_name" type="text" name="name" value="{{ old('full_name', $user->name) }}" />
+                            @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="field">
-                            <label for="">Email</label>
-                            <input class="full_name" type="text" name="full-name" />
+                            <label for="email">Email</label>
+                            <input id="email" type="text" name="email" value="{{ old('email', $user->email) }}" />
+                            @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="field">
-                            <label for="">Password</label>
-                            <input class="full_name" type="text" name="full-name" />
+                            <label for="old_password">Old Password</label>
+                            <input id="old_password" type="password" name="old_password" />
+                            @error('old_password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="field">
-                            <label for="">New Password</label>
-                            <input class="full_name" type="text" name="full-name" />
+                            <label for="new_password">New Password</label>
+                            <input id="new_password" type="password" name="new_password" />
+                            @error('new_password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
+                        @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                        @endif
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <a href="{{ route('dashboard') }}" class="btn btn-secondary">Cancel</a>
                     </form>
-                </div>
-                <div class="bottom">
-                    <a href="#"><button class="btn btn-primary" type="submit" name="button">Save</button></a>
-                    <a href="#"><button class="btn btn-primary" type="cancel" name="button">Cancel</button></a>
+                    @if(session('success'))
+                    <div class="alert alert-danger">
+                        {{ session('success') }}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
+    </div>
 </body>
+
 </html>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class UserController extends Controller
+class MembersController extends Controller
 {
     public function index()
     {
@@ -28,4 +28,5 @@ class UserController extends Controller
         $user->save();
         return redirect()->back()->with('success', 'User created successfully');
     }
+    
 }

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     @include('layouts.header')
     <title>Dashboard</title>
 </head>
-
 <body>
     @include('layouts.sidebar')
     <!-- Main Content -->
@@ -19,31 +17,55 @@
                 <span class="close">&times;</span>
                 <div class="modal-body">
                     <h2>Create New User</h2>
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-
                     <form id="newUserForm" action="{{ route('members.store') }}" method="POST">
                         @csrf
                         <label for="name">Name:</label><br>
                         <input type="text" id="name" name="name"><br>
+                        @if ($errors->has('name'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('name') as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <label for="email">Email:</label><br>
                         <input type="email" id="email" name="email"><br>
-                        <select name="user_role" >
+                        @if ($errors->has('email'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('email') as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                        <select name="user_role">
                             <option value="0">User</option>
                             <option value="1">Admin</option>
                         </select>
-                        <label for="role">Role:</label><br>
-                        <input type="text" id="role" name="user_role"><br>
+                        @if ($errors->has('user_role'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('user_role') as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <label for="password">Password:</label><br>
                         <input type="password" id="password" name="password"><br><br>
-                        <button type="button">Create</button>
+                        @if ($errors->has('password'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('password') as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                        <button type="submit">Create</button>
                     </form>
                 </div>
             </div>
@@ -70,7 +92,6 @@
                     }
                 }
             });
-
             function toggleOptions() {
                 var options = document.getElementById("options");
                 if (options.style.display === "none") {
@@ -120,26 +141,94 @@
                                 @else
                                 Unknown Role
                                 @endif</td>
-                            <td>
+                            <td id="status{{ $user->id }}">
                                 @if ($user->user_status == 0)
-                                <p class="status active">Acitve</p>
+                                <p class="status active">Active</p>
                                 @else
                                 <p class="status deactive">Inactive</p>
                                 @endif
                             </td>
                             <td>
                                 <div class="dropdown">
-                                    <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">Dropdown button</button>
+                                    <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">ACTIONS <i class="fa-solid fa-chevron-down"></i></button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Edit</a></li>
-                                        <li><a href="#">Delete</a></li>
+                                        <li><a href="{{ route('user.edit', $user->id) }}">Edit</a></li>
+                                        <li>
+                                            <form id="activationForm{{ $user->id }}" action="{{ route('user.activation', $user->id) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="button" id="activateBtn{{ $user->id }}" class="btn-link">{{ $user->user_status == 0 ? 'Deactivate' : 'Activate' }}</button>
+                                            </form>
+                                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                            <script>
+                                                $(document).ready(function() {
+                                                    $('#activateBtn{{ $user->id }}').click(function(e) {
+                                                        e.preventDefault(); // Prevent default form submission
+                                                        // Get CSRF token
+                                                        var csrfToken = '{{ csrf_token() }}';
+                                                        $.ajax({
+                                                            url: $('#activationForm{{ $user->id }}').attr('action'),
+                                                            type: 'PATCH',
+                                                            data: $('#activationForm{{ $user->id }}').serialize(),
+                                                            headers: {
+                                                                'X-CSRF-TOKEN': csrfToken // Include CSRF token in headers
+                                                            },
+                                                            success: function(response) {
+                                                                // Show success modal
+                                                                showModal(response.message);
+                                                                // Update status cell content
+                                                                var statusCell = $('#status{{ $user->id }}');
+                                                                if (response.user_status == 0) {
+                                                                    statusCell.html('<p class="status active">Active</p>');
+                                                                    $('#activateBtn{{ $user->id }}').text('Deactivate');
+                                                                } else {
+                                                                    statusCell.html('<p class="status deactive">Inactive</p>');
+                                                                    $('#activateBtn{{ $user->id }}').text('Activate');
+                                                                }
+                                                            },
+                                                            error: function(xhr, status, error) {
+                                                                console.error(xhr.responseText);
+                                                            }
+                                                        });
+                                                    });
+                                                });
+                                                // Function to show modal with success message
+                                                function showModal(message) {
+                                                    var modal = document.getElementById("successModal");
+                                                    var span = document.getElementsByClassName("close")[0];
+                                                    var successMessage = document.getElementById("successMessage");
+                                                    successMessage.textContent = message;
+                                                    modal.style.display = "block";
+                                                    // Close the modal when user clicks on the close button
+                                                    span.onclick = function() {
+                                                        modal.style.display = "none";
+                                                    }
+                                                    // Close the modal when user clicks anywhere outside of it
+                                                    window.onclick = function(event) {
+                                                        if (event.target == modal) {
+                                                            modal.style.display = "none";
+                                                        }
+                                                    }
+                                                }
+                                            </script>
+                                        </li>
                                     </ul>
                                 </div>
+                            </td>
                         </tr>
                         @endforeach
+                        <div id="successModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <div class="modal-body">
+                                    <img src="{{ asset('images/green_tick_icon.jpg') }}" alt="Success Icon">
+                                    <p id="successMessage">Success!</p>
+                                </div>
+                            </div>
+                        </div>
+                        
                 </table>
             </section>
         </main>
 </body>
-
 </html>

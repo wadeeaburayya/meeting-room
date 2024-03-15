@@ -10,6 +10,7 @@
         <header>
             @include('layouts.topbar')
         </header>
+        @if(auth()->user()->user_role == 1)
         <div class="cards">
             <div class="card-single">
                 <div>
@@ -39,7 +40,8 @@
                 </div>
             </div>
         </div>
-        <div class="meetings-container">
+        @endif
+        <div style="margin-top: 100px;" class="meetings-container">
             <div class="meeting-info upcoming-meetings">
                 <h3>Upcoming Meetings</h3>
                 @foreach($upcomingReservations as $reservation)
@@ -49,8 +51,9 @@
                     </div>
                     <div class="meeting-bottom">
                         <h5>{{ $reservation->user->name }}</h5>
-                        <p>Start Time: <i>{{ $reservation->start_time->format('Y-m-d H:i:s') }}</i></p>
-                        <p>End Time: <i>{{ $reservation->end_time->format('Y-m-d H:i:s') }}</i></p>
+                        <p>Topic: {{$reservation->reservation_topic}}</p>
+                        <p> Start Time: <i>{{ $reservation->start_time }}</i></p>
+                        <p>End Time: <i>{{ $reservation->end_time }}</i></p>
                     </div>
                 </div>
                 @endforeach
@@ -64,8 +67,9 @@
                     </div>
                     <div class="meeting-bottom">
                         <h5>{{ $reservation->user->name }}</h5>
-                        <p>Start Time: <i>{{ $reservation->start_time->format('Y-m-d H:i:s') }}</i></p>
-                        <p>End Time: <i>{{ $reservation->end_time->format('Y-m-d H:i:s') }}</i></p>
+                        <p>Topic: {{$reservation->reservation_topic}}</p>
+                        <p>Start Time: <i>{{ $reservation->start_time }}</i></p>
+                        <p>End Time: <i>{{ $reservation->end_time}}</i></p>
                     </div>
                 </div>
                 @endforeach
